@@ -20,16 +20,16 @@ import implementaciones.ConjuntoLD;
 
 public class Djikstra {
 
-  static final int MAX = 100;
-  static final int INF = Integer.MAX_VALUE;
+  static final int MAX = 100; // máximo valor para los arreglos
+  static final int INF = Integer.MAX_VALUE; // Representa el falor más alto posible
 
 
 
-  public static class Matriz {
+  public static class Matriz { 
     int distanciaOrigen;
     int nodoAnterior;
 
-    Matriz() {
+    Matriz() { // Inicializamos la Matriz
       this.distanciaOrigen = INF;
       this.nodoAnterior = -1;
     }
@@ -60,19 +60,21 @@ public class Djikstra {
   }
 
   public static void main(String[] args) {
-    GrafoTDA g1 = Grafo();
-    int origen = 1;
+    GrafoTDA g1 = Grafo(); // inicialoza el grafo con aristas y vértices
+
+    int origen = 1; 
 
     Matriz[] tabla = new Matriz[MAX];
     boolean[] visitado = new boolean[MAX];
 
-    for (int i = 0; i < MAX; i++) {
+    for (int i = 0; i < MAX; i++) { 
       tabla[i] = new Matriz();
-    }
+    }// completa el arreglo con matrices vacias
 
     tabla[origen].distanciaOrigen = 0;
 
-    conjuntoTDA nodos = g1.vertices();
+    conjuntoTDA nodos = g1.vertices(); // guarda los vértices del grafo en un conjunto
+
     conjuntoTDA AUX = new ConjuntoLD();
     AUX.inicializarConjunto();
 
@@ -104,7 +106,7 @@ public class Djikstra {
         }
       }
 
-      AUX.sacar(u); // ¡Importante! Sacar el nodo que ya fue visitado
+      AUX.sacar(u); // Sacar el nodo que ya fue visitado
     }
 
     for (int i = 0; i < MAX; i++) {
@@ -142,81 +144,4 @@ public class Djikstra {
     return minNodo;
   }
 }
-/* 
-     while(!AUX.conjuntoVacio()) {
-      nodo = AUX.elegir();
-      nodos.agregar(nodo);
-      AUX.sacar(nodo);
-    }
 
-    
-    vecinos = g1.vecinos(1);
-    while(!vecinos.conjuntoVacio()) {
-      vecino = vecinos.elegir();
-      vecinos.sacar(vecino);
-    }
-   
-
-    while (!AUX.conjuntoVacio()) {
-      nodo = AUX.elegir();
-
-      vecinos = g1.vecinos(nodo);
-      while(!vecinos.conjuntoVacio()) {
-
-        vecino = vecinos.elegir();
-
-        peso = g1.pesoArista(nodo, vecino);
-
-        Matriz m1= new Matriz();
-        
-        m1.distanciaOrigen = peso;
-        m1.nodoAnterior = nodo;
-        
- 
-        
-        System.out.println(m1.distanciaOrigen);
-        System.out.println(m1.nodoAnterior);
-
-        
-        
-        vecinos.sacar(vecino);
-      }
-      AUX.sacar(nodo);
-    }
-}}
-     /* 
-      vecinos = g1.vecinos(vertice);
-     
-     conjuntoTDA vecino = new ConjuntoLD();
-      
-      
-      for (int i=0 ;i<2 ;i++) {
-
-        vecino = g1.vecinos(nodos.elegir());
-        System.out.println(vecino.elegir());
-        vecino.sacar(vecino.elegir());
-        
-      }
-      
-
-}}
-
-        /*for (int i=0; i<100 ; i++) {
-  
-          vertices = g1.vertices();
-  
-          try {
-          vertice = vertices.elegir();
-  
-          } catch (NullPointerException e) {
-            break;
-          }
-  
-          if (vertice != 0) { 
-            nodos.agregar(vertice);
-            System.out.println(vertice);
-            
-          } else {
-            break;
-          } 
-        }*/
